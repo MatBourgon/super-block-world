@@ -13,12 +13,12 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PipeBodyBlock extends AbstractPipe {
-    private static final BooleanProperty DOWN = BlockStateProperties.DOWN;
-    private static final BooleanProperty NORTH = BlockStateProperties.NORTH;
-    private static final BooleanProperty EAST = BlockStateProperties.EAST;
-    private static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
-    private static final BooleanProperty WEST = BlockStateProperties.WEST;
-    private static final BooleanProperty UP = BlockStateProperties.UP;
+    protected static final BooleanProperty DOWN = BlockStateProperties.DOWN;
+    protected static final BooleanProperty NORTH = BlockStateProperties.NORTH;
+    protected static final BooleanProperty EAST = BlockStateProperties.EAST;
+    protected static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
+    protected static final BooleanProperty WEST = BlockStateProperties.WEST;
+    protected static final BooleanProperty UP = BlockStateProperties.UP;
 
     private static final VoxelShape Y_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     private static final VoxelShape X_SHAPE = Block.box(0.0D, 1.0D, 1.0D, 16.0D, 15.0D, 15.0D);
@@ -52,7 +52,7 @@ public class PipeBodyBlock extends AbstractPipe {
         return super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
     }
 
-    private BlockState northSouthPredicates(BlockState state, Direction direction, BlockState neighbor) {
+    protected BlockState northSouthPredicates(BlockState state, Direction direction, BlockState neighbor) {
         boolean isPipe = neighbor.getBlock() instanceof AbstractPipe;
         boolean upDown = neighbor.is(this) && (neighbor.getValue(FACING) == Direction.UP || neighbor.getValue(FACING) == Direction.DOWN);
         boolean eastWest = isPipe && (neighbor.getValue(FACING) == Direction.EAST || neighbor.getValue(FACING) == Direction.WEST);
@@ -80,7 +80,7 @@ public class PipeBodyBlock extends AbstractPipe {
         } else return state;
     }
 
-    private BlockState upDownPredicates(BlockState state, Direction direction, BlockState neighbor) {
+    protected BlockState upDownPredicates(BlockState state, Direction direction, BlockState neighbor) {
         boolean isPipe = neighbor.getBlock() instanceof AbstractPipe;
         boolean northSouth = isPipe && (neighbor.getValue(FACING) == Direction.NORTH || neighbor.getValue(FACING) == Direction.SOUTH);
         boolean eastWest = isPipe && (neighbor.getValue(FACING) == Direction.EAST || neighbor.getValue(FACING) == Direction.WEST);
@@ -108,7 +108,7 @@ public class PipeBodyBlock extends AbstractPipe {
         } else return state;
     }
 
-    private BlockState eastWestPredicates(BlockState state, Direction direction, BlockState neighbor) {
+    protected BlockState eastWestPredicates(BlockState state, Direction direction, BlockState neighbor) {
         boolean isPipe = neighbor.getBlock() instanceof AbstractPipe;
         boolean northSouth = isPipe && (neighbor.getValue(FACING) == Direction.NORTH || neighbor.getValue(FACING) == Direction.SOUTH);
         boolean upDown = neighbor.is(this) && (neighbor.getValue(FACING) == Direction.UP || neighbor.getValue(FACING) == Direction.DOWN);

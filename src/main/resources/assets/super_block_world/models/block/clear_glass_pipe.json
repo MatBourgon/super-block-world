@@ -1,0 +1,9 @@
+{
+    "parent": "super_block_world:block/template_warp_pipe",
+    "render_type": "cutout",
+    "textures": {
+        "top": "minecraft:block/glass",
+        "side": "minecraft:block/glass",
+        "particle": "minecraft:block/glass"
+    }
+}

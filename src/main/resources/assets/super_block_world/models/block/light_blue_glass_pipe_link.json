@@ -1,0 +1,9 @@
+{
+    "parent": "super_block_world:block/template_pipe_link",
+    "render_type": "translucent",
+    "textures": {
+        "top": "minecraft:block/light_blue_stained_glass",
+        "side": "minecraft:block/light_blue_stained_glass",
+        "particle": "minecraft:block/light_blue_stained_glass"
+    }
+}

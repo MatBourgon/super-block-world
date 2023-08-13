@@ -1,0 +1,9 @@
+{
+    "parent": "super_block_world:block/template_pipe_link",
+    "render_type": "translucent",
+    "textures": {
+        "top": "minecraft:block/gray_stained_glass",
+        "side": "minecraft:block/gray_stained_glass",
+        "particle": "minecraft:block/gray_stained_glass"
+    }
+}

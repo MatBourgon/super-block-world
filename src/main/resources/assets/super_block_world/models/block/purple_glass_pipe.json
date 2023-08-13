@@ -1,0 +1,9 @@
+{
+    "parent": "super_block_world:block/template_warp_pipe",
+    "render_type": "translucent",
+    "textures": {
+        "top": "minecraft:block/purple_stained_glass",
+        "side": "minecraft:block/purple_stained_glass",
+        "particle": "minecraft:block/purple_stained_glass"
+    }
+}
