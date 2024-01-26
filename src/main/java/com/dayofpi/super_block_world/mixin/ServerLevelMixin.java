@@ -2,19 +2,29 @@ package com.dayofpi.super_block_world.mixin;
 
 import com.dayofpi.super_block_world.entity.ModEntityTypes;
 import com.dayofpi.super_block_world.entity.SpaceCreature;
+import com.dayofpi.super_block_world.util.ItemPipeNetwork.PipeNetworkSystem;
 import com.dayofpi.super_block_world.worldgen.dimension.ModDimensions;
 import com.dayofpi.super_block_world.worldgen.structure.ModStructures;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.progress.ChunkProgressListener;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.RandomSequences;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.CustomSpawner;
 import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.NaturalSpawner;
+import net.minecraft.world.level.dimension.LevelStem;
+import net.minecraft.world.level.storage.LevelStorageSource;
+import net.minecraft.world.level.storage.ServerLevelData;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.registries.RegistryObject;
@@ -24,7 +34,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.Executor;
 
 @Mixin(ServerLevel.class)
 public abstract class ServerLevelMixin {
@@ -68,5 +82,17 @@ public abstract class ServerLevelMixin {
             ForgeEventFactory.onFinalizeSpawn(mob, pServerLevel, pServerLevel.getCurrentDifficultyAt(pPos), MobSpawnType.NATURAL, null, null);
             pServerLevel.addFreshEntityWithPassengers(mob);
         }
+    }
+
+    // Pipe Network
+//    private PipeNetworkSystem pipeNetworkSystem;
+//
+//    @Inject(at=@At("TAIL"), method="<init>")
+//    private void serverLevelConstructor(MinecraftServer p_214999_, Executor p_215000_, LevelStorageSource.LevelStorageAccess p_215001_, ServerLevelData p_215002_, ResourceKey<Level> p_215003_, LevelStem p_215004_, ChunkProgressListener p_215005_, boolean p_215006_, long p_215007_, List<CustomSpawner> p_215008_, boolean p_215009_, @Nullable RandomSequences p_288977_, CallbackInfo callbackInfo) {
+//        pipeNetworkSystem = new PipeNetworkSystem();
+//    }
+
+    public Optional<PipeNetworkSystem> getPipeNetworkSystem() {
+        return PipeNetworkSystem.getSystemForDimension(getLevel().dimension().location().toString());
     }
 }

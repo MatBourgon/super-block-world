@@ -1,10 +1,14 @@
 package com.dayofpi.super_block_world.block.custom;
 
 import com.dayofpi.super_block_world.block.block_entities.GlassPipeBlockEntity;
+import com.dayofpi.super_block_world.mixin.ServerLevelMixin;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BeaconBeamBlock;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -16,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class GlassPipeBlock  extends AbstractPipe implements EntityBlock, BeaconBeamBlock {
+public class GlassPipeBlock extends AbstractPipe implements EntityBlock, BeaconBeamBlock {
 
     protected Optional<DyeColor> color;
 
